@@ -31,6 +31,11 @@ public class App {
         System.out.println();
         System.out.println();
         System.out.println("Adios");
-        
+        //ejemplos usando print
+        System.out.print("Naranja");
+        System.out.print("Sandia");
+        System.out.print("Melon");
+        System.out.print("Manzana");
+        System.out.print("\nPiña\nKiwi");
     }
 }
