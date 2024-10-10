@@ -86,5 +86,27 @@ public class App {
         System.out.println("***********************");
         for( int i = 10; i >= 1; i -= 1 )
             System.out.println(i);
+        
+        /*7) imprimir los numeros del 10 al 0,
+        de forma descendente de dos en dos*/
+        System.out.println("***********************");
+        for( int i = 10; i >= 0; i -= 2 )
+            System.out.println(i);
+        //forma extraña de resolver el anterior, confusa
+        System.out.println("***********************");
+        for( int i = 0; i <= 10; i = i + 2 )
+            System.out.println(10-i);
+        /*8) imprimir los numeros del 100 al 0,
+        de forma descendente de diez en diez*/
+        System.out.println("***********************");
+        for( int i = 100; i >= 0; i -= 10)
+            System.out.println(i);
+        
+        /*for permite tambien usar decimales como variable de control
+        como por ejemplo para hacer saltos en pequeñas porciones*/
+        //imprimir los numeros del 0 al 10 en saltos de 0.25 en 0.25
+        System.out.println("***********************");
+        for( float i = 0; i <= 10; i += 0.25f )
+            System.out.println(i);
     }
 }
