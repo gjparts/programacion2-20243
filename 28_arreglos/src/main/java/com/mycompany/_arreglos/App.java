@@ -1,4 +1,6 @@
 package com.mycompany._arreglos;
+import java.util.Arrays;
+import java.util.Random;
 public class App {
 
     public static void main(String[] args) {
@@ -43,5 +45,44 @@ public class App {
         System.out.println("El primer elemento de arreglo1 es: "+arreglo1[0]);
         System.out.println("El ultimo elemento de arreglo1 es: "+arreglo1[5]);
         System.out.println("El ultimo elemento de arreglo1 es: "+arreglo1[ arreglo1.length-1 ]);
+        
+        //FORMA 2: inicializarlo prellenado con datos predefinidos
+        int arreglo2[] = { 777, 234, 6, -8, 0, 456, 90, 786, 5432 };
+        System.out.println("Numero de elementos de arreglo2: "+arreglo2.length);
+        //imprimir el arreglo anterior
+        for( int i = 0; i < arreglo2.length; i++ )
+            System.out.println("Posicion: "+i+", valor: "+arreglo2[i]);
+        
+        //que pasa si imprimo la variable del arreglo?
+        System.out.println("Direccion de memoria de arreglo2: "+arreglo2);
+        System.out.println("Direccion de memoria de arreglo1: "+arreglo1);
+        
+        /*Hacer un programa que tenga un arreglo unidimensional
+        de numeros enteros de tamaño 25 y llenar cada uno de sus
+        elementos con un numero al azar entre 5 y 97 no importa
+        que se repitan. Por ultimo imprimir el arreglo.*/
+        Random r = new Random();
+        int arreglo3[] = new int[25];
+        System.out.println("*******************");
+        //llenar cada elemento del arreglo
+        for(int i = 0; i < arreglo3.length; i++){
+            arreglo3[i] = r.nextInt(93)+5; //llenar
+            System.out.println(arreglo3[i]); //imprimir
+        }
+        //crear un nuevo arreglo que sea una copia del arreglo del ejercicio
+        //anterior; pero en este nuevo arreglo cada elemento estara elevado
+        //al cubo. Imprimir el nuevo arreglo.
+        int arreglo4[] = new int[ arreglo3.length ];
+        //copiar cada item de arreglo3 hacia arreglo4; pero elevado al cubo
+        System.out.println("******************* AL CUBO: ");
+        for( int i = 0; i < arreglo4.length; i++ ){
+            //arreglo4[i] = arreglo3[i]*arreglo3[i]*arreglo3[i];
+            //a continuacion se eleva usando pow (que devuelve double)
+            //y le decimos al compilador que considere ese double devuelto
+            //por pow como un entero.
+            arreglo4[i] = (int)Math.pow(arreglo3[i], 3);
+            System.out.println(arreglo4[i]); //imprimir
+        }
+        
     }
 }
