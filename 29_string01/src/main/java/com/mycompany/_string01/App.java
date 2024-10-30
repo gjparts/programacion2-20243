@@ -81,5 +81,69 @@ public class App {
         System.out.println("******* hemos afecta a la variable orignal *******");
         System.out.println("estudiante, variable original: "+estudiante);
         System.out.println("estudiante, longitud de variable original: "+estudiante.length());
+        
+        String verdura = "     chILe dULCe";
+        /*imprimir la variable verdura; pero sin espacios de relleno, todo en mayusculas,
+        y sin alterar a la variable original; pero todo lo deben de hacer en una sola
+        instruccion.*/
+        System.out.println( verdura.trim().toUpperCase() );
+        //otra forma de resolver:
+        System.out.println( verdura.toUpperCase().trim() );
+        
+        //Concatenar elementos char en un String
+        String universidad = "UNAH";
+        //concatenar un char sin afecta a la variable original
+        System.out.println( universidad+'X' );
+        //si desea afectar a la variable original:
+        universidad = universidad + 'C';
+        System.out.println(universidad);
+        //se puede concatenar varios char a un String:
+        String carro = "Toyota";
+        carro = carro + 'x' + 'y' + 'z';
+        System.out.println(carro);
+        //lo anterior se resulve mas facil concatenando otro String
+        //pero es importante que sepan concatenar elementos char
+        String vehiculo = "Toyota";
+        vehiculo = vehiculo + "xyz";
+        System.out.println(vehiculo);
+        //tambien puede concatenar una variable char a un String
+        char coma = ',';
+        String mascota = "Firulais";
+        mascota = mascota + coma;
+        System.out.println(mascota);
+        
+        String ciudad = "San Pedro Sula";
+        /*generar una nueva variable String que sea una copia de la variable ciudad;
+        pero van a reemplazar cada espacio en blanco por un asterisco; sin utilizar
+        el metodo replace. Imprimir la nueva variable.*/
+        String copia = ""; //inicializar un String donde hacer la copia
+        //recorrer ciudad e ir copiando char por char hacia copia
+        //excepto los espacios en blanco que pasan a ser asteriscos
+        for( int i = 0; i < ciudad.length(); i++ ){
+            if( ciudad.charAt(i) == ' ' )
+                copia = copia + '*';
+            else
+                copia = copia + ciudad.charAt(i);
+        }
+        System.out.println("original: "+ciudad);
+        System.out.println("copia: "+copia);
+        
+        //otra forma de hacerlo es usando un operador ternario
+        String otracopia = "";
+        for( int i = 0; i < ciudad.length(); i++ )
+            otracopia = otracopia + ( ciudad.charAt(i) == ' ' ? '*' : ciudad.charAt(i) );
+        
+        System.out.println("original: "+ciudad);
+        System.out.println("copia: "+otracopia);
+        
+        //otro ejemplo de ternario
+        int num = 13;
+        if( num%2 == 0 )
+            System.out.println(num+" es par");
+        else
+            System.out.println(num+" es impar");
+        
+        //con operador ternario:
+        System.out.println( num+( num%2 == 0 ? " es par" : " es impar" ) );
     }
 }
