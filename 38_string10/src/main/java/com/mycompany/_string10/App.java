@@ -1,4 +1,5 @@
 package com.mycompany._string10;
+import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         /*Metodo indexOf
@@ -38,6 +39,23 @@ public class App {
         dicho color ignorando mayusc./minusc. Ejemplo:
         color a buscar: rojo
         veces que se encontró: 3*/
+        Scanner s = new Scanner(System.in);
+        System.out.println(colores);
+        System.out.print("Color a buscar: ");
+        String buscar = s.nextLine();
+        int ultima_posicion = 0; //variable bandera
+        int coincidencias = 0; //contador
         
+        //repetir hasta que la ultima posicion sea -1
+        while( ultima_posicion >= 0 ){
+            ultima_posicion = colores.toLowerCase().indexOf(buscar.toLowerCase(),ultima_posicion);
+
+            //cuando encontramos algo es porque no es -1 o sea >= 0
+            if( ultima_posicion >= 0 ){
+                ultima_posicion++; //sumar 1 a la ultima posicion para seguir buscando
+                coincidencias++; //sumar 1 al contador de veces que se encontro
+            }
+        }
+        System.out.println("veces que se encontro: "+coincidencias);
     }
 }
