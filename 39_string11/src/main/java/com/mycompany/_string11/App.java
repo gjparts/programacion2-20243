@@ -1,4 +1,5 @@
 package com.mycompany._string11;
+import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         /*Metodo substring
@@ -37,6 +38,20 @@ public class App {
         Municipio: 01
         Año de asentamiento: 1982
         Correlativo: 01055*/
-        
+        Scanner s = new Scanner(System.in);
+        System.out.print("Digite su DNI: ");
+        String dni = s.nextLine();
+        //eliminacion de espacios de relleno, güiones
+        //güiones bajos, espacios en blanco
+        dni = dni.trim().replace("-", "").replace("_", "").replace(" ", "");
+        //comprobar la longitud
+        if( dni.length() == 13 ){
+            System.out.println("Departamento: "+dni.substring(0,2));
+            System.out.println("Municipio: "+dni.substring(2,4));
+            System.out.println("Anio de Asentamiento: "+dni.substring(4,8));
+            System.out.println("Correlativo: "+dni.substring(8));
+        }
+        else
+            System.out.println("DNI debe de ser de 13 digitos.");
     }
 }
