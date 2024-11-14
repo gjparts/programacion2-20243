@@ -1,4 +1,5 @@
 package com.mycompany._string12;
+import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         /*Metodo split
@@ -35,5 +36,32 @@ public class App {
         //el caso anterior demuestra que la | lo que hace es partir en chars a str
         //la explicacion es: la barra | se usa para hacer expresiones regulares
         //por lo tanto no se puede usar como token.
+        
+        //entonces; que pasaria si recibo los datos separados por barras?
+        //pero; no puedo usar barras para hacer split.
+        //solucion: reemplace las barras por un caracter que si se pueda usar con split:
+        arreglo2 = str.replace("|", ";").split(";");
+        for( int i = 0; i < arreglo2.length; i++ )
+            System.out.println( "Posicion: "+i+", valor: "+arreglo2[i] );
+        
+        /*Hace un programa que pregunte un String al usuario,
+        el programa dira cuantas palabras tiene el String
+        tomando en cuenta que cada palabra se separara por solo un espacio
+        en blanco.
+        Ejemplo:
+        Digitar String:Gerardo Josue Portillo
+        numero de palabras: 3
+        
+        otro ejemplo:
+        Digitar String:Ingenieria En Sistemas .
+        numero de palabras: 4*/
+        Scanner s = new Scanner(System.in);
+        System.out.print("Digitar string: ");
+        String cadena1 = s.nextLine();
+        //forma 1:
+        String arreglo3[] = cadena1.split(" ");
+        System.out.println("Numero de palabras: "+arreglo3.length);
+        //forma 2:
+        System.out.println("Numero de palabras: "+cadena1.split(" ").length);
     }
 }
