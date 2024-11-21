@@ -10,6 +10,7 @@ package com.mycompany._gui03;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Sumadora abc = new Sumadora();
+        abc.setVisible(true);
     }
 }
