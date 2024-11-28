@@ -9,6 +9,7 @@ package com.mycompany._gui04;
  * @author Gerardo
  */
 import javax.swing.JOptionPane;
+import java.text.DecimalFormat; //clase para dar formato a numeros
 public class Cuadratica extends javax.swing.JFrame {
 
     /**
@@ -150,30 +151,50 @@ public class Cuadratica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
-        //al hacer click en el boton Cuadratica
-        //extraer los valores de las cajas de texto hacia variables numericas
-        double a,b,c,x1,x2;
-        a = Double.parseDouble( caja1.getText() );
-        b = Double.parseDouble( caja2.getText() );
-        c = Double.parseDouble( caja3.getText() );
-        //validaciones
-        //caja1 no puede ser cero
-        if( a == 0 )
-            JOptionPane.showMessageDialog(this, "a no puede ser CERO.");
-        else{
-            //discriminante no puede ser negativo
-            double discriminante = Math.pow(b, 2)-4*a*c;
-            if( discriminante < 0 )
-                JOptionPane.showMessageDialog(this, "discriminante negativo no se puede continuar");
+        try{
+            //aqui va el codigo propenso a fallar
+            //al hacer click en el boton Cuadratica
+            //extraer los valores de las cajas de texto hacia variables numericas
+            double a,b,c,x1,x2;
+            a = Double.parseDouble( caja1.getText() );
+            b = Double.parseDouble( caja2.getText() );
+            c = Double.parseDouble( caja3.getText() );
+            //validaciones
+            //caja1 no puede ser cero
+            if( a == 0 )
+                JOptionPane.showMessageDialog(this, "a no puede ser CERO.");
             else{
-                //si llego aqui, todo va bien, calculamos x1 x2
-                x1 = (-b+Math.sqrt(discriminante))/(2*a);
-                x2 = (-b-Math.sqrt(discriminante))/(2*a);
-                //colocar los totales en las cajas de texto respectivas
-                total1.setText( String.valueOf(x1) );
-                total2.setText( String.valueOf(x2) );
+                //discriminante no puede ser negativo
+                double discriminante = Math.pow(b, 2)-4*a*c;
+                if( discriminante < 0 )
+                    JOptionPane.showMessageDialog(this, "discriminante negativo no se puede continuar");
+                else{
+                    //si llego aqui, todo va bien, calculamos x1 x2
+                    x1 = (-b+Math.sqrt(discriminante))/(2*a);
+                    x2 = (-b-Math.sqrt(discriminante))/(2*a);
+                    
+                    //dar formato a los totales a 3 decimales
+                    DecimalFormat f = new DecimalFormat();
+                    //configurar los decimales de precision
+                    f.setMaximumFractionDigits(3);
+                    f.setMinimumFractionDigits(3);
+                    
+                    //colocar los totales en las cajas de texto respectivas
+                    //aplicandoles el formato a 3 decimales:
+                    //f.format les devuelve un String
+                    total1.setText( f.format(x1) );
+                    total2.setText( f.format(x2) );
+                }
             }
         }
+        catch(Exception ex){
+            //aqui va lo que ejecutaremos en caso de falla
+            JOptionPane.showMessageDialog(this, "Revise los valores proporcionados.");
+            total1.setText("ERROR");
+            total2.setText("ERROR");
+        }
+
+        
     }//GEN-LAST:event_botonCalcularActionPerformed
 
     /**
