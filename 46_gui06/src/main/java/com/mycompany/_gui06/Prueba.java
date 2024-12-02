@@ -8,6 +8,9 @@ package com.mycompany._gui06;
  *
  * @author Gerardo
  */
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Color; //clase para usar colores predefinidos
+import javax.swing.JOptionPane;
 public class Prueba extends javax.swing.JFrame {
 
     /**
@@ -28,6 +31,11 @@ public class Prueba extends javax.swing.JFrame {
 
         check1 = new javax.swing.JCheckBox();
         letrero1 = new javax.swing.JLabel();
+        combo1 = new javax.swing.JComboBox<>();
+        letrero2 = new javax.swing.JLabel();
+        letrero3 = new javax.swing.JLabel();
+        botonEvaluar1 = new javax.swing.JButton();
+        botonSandia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("20012002049 Gerardo");
@@ -48,28 +56,82 @@ public class Prueba extends javax.swing.JFrame {
         letrero1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         letrero1.setText("jLabel1");
 
+        combo1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perro", "Gato", "Loro", "Gallina", "Cocodrilo" }));
+        combo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo1ActionPerformed(evt);
+            }
+        });
+
+        letrero2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        letrero2.setText("jLabel1");
+
+        letrero3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        letrero3.setText("jLabel2");
+
+        botonEvaluar1.setText("Evaluar check1");
+        botonEvaluar1.setToolTipText("");
+        botonEvaluar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEvaluar1ActionPerformed(evt);
+            }
+        });
+
+        botonSandia.setText("Pedir Sandia");
+        botonSandia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSandiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(check1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(letrero2, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                                .addComponent(letrero3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonSandia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(letrero1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addComponent(letrero1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonEvaluar1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(check1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(letrero1)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(letrero1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonEvaluar1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(combo1)
+                    .addComponent(botonSandia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(letrero2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(letrero3)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,7 +150,46 @@ public class Prueba extends javax.swing.JFrame {
         //evento que se ejecuta cuando se dibuja el JFrame en pantalla
         //ejecutar la funcion para el evento ActionPerformed de check1:
         check1ActionPerformed(null);
+        
+        //llenar el combobox llamado combo1
+        //primero se crea el modelo
+        DefaultComboBoxModel modelo1 = new DefaultComboBoxModel();
+        modelo1.addElement("Pera");
+        modelo1.addElement("Uva");
+        modelo1.addElement("Manzana");
+        modelo1.addElement("Naranja");
+        modelo1.addElement("Sandia");
+        modelo1.addElement("Mandarina");
+        //apuntar el modelo creado para usarse en combo1
+        combo1.setModel(modelo1);
+        
+        //disparar el evento actionPerformed de combo1
+        combo1ActionPerformed(null);
     }//GEN-LAST:event_formWindowOpened
+
+    private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
+        //evento que se dispara cuando seleccionamos algo en combo1
+        //los items de un combobox se numeran de 0 a N-1
+        letrero2.setText("Indice seleccionado: "+combo1.getSelectedIndex());
+        letrero3.setText("Texto seleccionado: "+combo1.getSelectedItem());
+        
+        //si selecciona Sandia que el fondo se coloree de verde sino que vuelva
+        //al color original
+        if( combo1.getSelectedItem().equals("Sandia") == true )
+            this.getContentPane().setBackground( Color.GREEN );
+        else
+            this.getContentPane().setBackground(null); //eliminar color de fondo
+    }//GEN-LAST:event_combo1ActionPerformed
+
+    private void botonEvaluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEvaluar1ActionPerformed
+        //consultar el valor de check1 desde un evento externo
+        JOptionPane.showMessageDialog(this, "El valor de check1 es: "+check1.isSelected());
+    }//GEN-LAST:event_botonEvaluar1ActionPerformed
+
+    private void botonSandiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSandiaActionPerformed
+        //colocar un valor a combo1 desde un evento externo
+        combo1.setSelectedItem("Sandia");
+    }//GEN-LAST:event_botonSandiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,7 +227,12 @@ public class Prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonEvaluar1;
+    private javax.swing.JButton botonSandia;
     private javax.swing.JCheckBox check1;
+    private javax.swing.JComboBox<String> combo1;
     private javax.swing.JLabel letrero1;
+    private javax.swing.JLabel letrero2;
+    private javax.swing.JLabel letrero3;
     // End of variables declaration//GEN-END:variables
 }
