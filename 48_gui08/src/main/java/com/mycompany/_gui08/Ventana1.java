@@ -17,6 +17,22 @@ public class Ventana1 extends javax.swing.JFrame {
     //de esta clase
     DefaultListModel modelo;
     
+    //funcion o metodo para contar los perros y los gatos
+    public void contar(){
+        int gatos = 0, perros = 0;
+        //recorrer el modelo, item por item
+        for( int i = 0; i < modelo.size(); i++ ){
+            //recuperar el item actual dentro de un String
+            String animal = modelo.getElementAt(i).toString();
+            //vemos si el animal es perro o gato, ignorando mayusculas/minusculas
+            if( animal.toLowerCase().equals("gato") == true ) gatos++;
+            if( animal.toLowerCase().equals("perro") == true ) perros++;
+        }
+        //al terminar el recorrido poner los resultados en las cajas respectivas
+        cantidadGatos.setText( String.valueOf(gatos) );
+        cantidadPerros.setText( String.valueOf(perros) );
+    }
+    
     /**
      * Creates new form Ventana1
      */
@@ -39,6 +55,12 @@ public class Ventana1 extends javax.swing.JFrame {
         botonAgregar1 = new javax.swing.JButton();
         botonAgregar2 = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cantidadGatos = new javax.swing.JTextField();
+        cantidadPerros = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("20012002049 Gerardo");
@@ -82,6 +104,34 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
+        botonEliminar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+
+        botonLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Contador de gatos:");
+
+        cantidadGatos.setEditable(false);
+        cantidadGatos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cantidadGatos.setText("0");
+
+        cantidadPerros.setEditable(false);
+        cantidadPerros.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cantidadPerros.setText("0");
+
+        jLabel2.setText("Contador de perros:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +142,21 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantidadGatos))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantidadPerros))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(caja, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -100,7 +164,7 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(310, 310, 310)
                         .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +179,19 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonAgregar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEditar)))
+                        .addComponent(botonEditar)
+                        .addGap(35, 35, 35)
+                        .addComponent(botonEliminar)
+                        .addGap(35, 35, 35)
+                        .addComponent(botonLimpiar)
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidadGatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidadPerros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -134,6 +210,8 @@ public class Ventana1 extends javax.swing.JFrame {
         modelo.addElement("Gallina");
         //apuntar el modelo hacia el JList
         lista.setModel(modelo);
+        
+        contar(); //ejecutar funcion para contar perros y gatos
     }//GEN-LAST:event_formWindowOpened
 
     private void botonAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregar1ActionPerformed
@@ -143,6 +221,7 @@ public class Ventana1 extends javax.swing.JFrame {
             modelo.addElement(caja.getText());
             //dejar en blanco la caja de texto
             caja.setText("");
+            contar(); //ejecutar funcion para contar perros y gatos
         }
     }//GEN-LAST:event_botonAgregar1ActionPerformed
 
@@ -156,6 +235,7 @@ public class Ventana1 extends javax.swing.JFrame {
             //validar que x no venga en blanco
             if( x.trim().length() > 0 ){
                 modelo.addElement(x);
+                contar(); //ejecutar funcion para contar perros y gatos
             }
         }
     }//GEN-LAST:event_botonAgregar2ActionPerformed
@@ -173,9 +253,37 @@ public class Ventana1 extends javax.swing.JFrame {
             if( nuevo.trim().length() > 0 ){
                 //reemplazar el valor en el modelo para la posicion en la lista
                 modelo.setElementAt(nuevo, lista.getSelectedIndex());
+                contar(); //ejecutar funcion para contar perros y gatos
             }
         }
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        //verificar que se ha seleccionado un animal en la lista
+        if( lista.getSelectedIndex() == -1 ){
+            JOptionPane.showMessageDialog(this, "Seleccione un animal");
+            return; //no sigue
+        }
+        
+        //preguntar al usuario si desea borrar el item
+        int respuesta = JOptionPane.showConfirmDialog(this, "Desea eliminar el animal seleccionado?");
+        //System.out.println(respuesta);
+        //repuesta es el numero del boton en que se hizo click: 0 es Yes, 1 es No, 2 es Cancel
+        
+        if( respuesta == 0 ){
+            //eliminar item seleccionado
+            modelo.removeElementAt( lista.getSelectedIndex() );
+            contar(); //ejecutar funcion para contar perros y gatos
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        int respuesta = JOptionPane.showConfirmDialog(this, "Desea limpiar toda la lista?");
+        if( respuesta == 0 ){
+            modelo.removeAllElements();
+            contar(); //ejecutar funcion para contar perros y gatos
+        }
+    }//GEN-LAST:event_botonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +324,13 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregar1;
     private javax.swing.JButton botonAgregar2;
     private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JTextField caja;
+    private javax.swing.JTextField cantidadGatos;
+    private javax.swing.JTextField cantidadPerros;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lista;
     // End of variables declaration//GEN-END:variables
